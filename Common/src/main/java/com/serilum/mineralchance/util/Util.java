@@ -4,33 +4,31 @@ import com.natamus.collective.data.GlobalVariables;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-import java.util.ArrayList;
+import com.serilum.mineralchance.config.ConfigHandler;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.serilum.mineralchance.config.ConfigHandler;
-
-
 public class Util {
 
 	// Defined weighted lists: Item -> Weight
-	private static final List<Map.Entry<Item, Integer>> OVERWORLD_MINERALS = Arrays.asList(
-			entry(Items.COPPER_INGOT, ConfigHandler.overworldCopperIngotWeight),  // 10% Chance
-			entry(Items.COAL, ConfigHandler.overworldCoalWeight),          // 30% Chance
-			entry(Items.IRON_INGOT, ConfigHandler.overworldIronIngotWeight),    // 40% chance
-			entry(Items.GOLD_INGOT, ConfigHandler.overworldGoldIngotWeight),    // 25% chance
-			entry(Items.REDSTONE_BLOCK, ConfigHandler.overworldRedstoneWeight),       // 15% chance
-			entry(Items.LAPIS_LAZULI, ConfigHandler.overworldLapisWeight),   // 10% chance
-			entry(Items.EMERALD, ConfigHandler.overworldEmeraldWeight),          // 8% chance
-			entry(Items.DIAMOND, ConfigHandler.overworldDiamondWeight)         // 2% chance
+	private static final List<Entry<Item, Integer>> OVERWORLD_MINERALS = List.of(
+			Map.entry(Items.COPPER_INGOT, ConfigHandler.overworldCopperIngotWeight),  // 10% Chance
+			Map.entry(Items.COAL, ConfigHandler.overworldCoalWeight),          // 30% Chance
+			Map.entry(Items.IRON_INGOT, ConfigHandler.overworldIronIngotWeight),    // 40% chance
+			Map.entry(Items.GOLD_INGOT, ConfigHandler.overworldGoldIngotWeight),    // 25% chance
+			Map.entry(Items.REDSTONE_BLOCK, ConfigHandler.overworldRedstoneWeight),       // 15% chance
+			Map.entry(Items.LAPIS_LAZULI, ConfigHandler.overworldLapisWeight),   // 10% chance
+			Map.entry(Items.EMERALD, ConfigHandler.overworldEmeraldWeight),          // 8% chance
+			Map.entry(Items.DIAMOND, ConfigHandler.overworldDiamondWeight)         // 2% chance
 	);
 
-	private static final List<Entry<Item, Integer>> NETHER_MINERALS = Arrays.asList(
-			entry(Items.QUARTZ, ConfigHandler.netherQuartz),          // ~60% chance
-			entry(Items.GOLD_INGOT, ConfigHandler.netherGoldIngot),     // ~35% chance
-			entry(Items.NETHERITE_SCRAP, ConfigHandler.netherNetherite)   // ~5% chance
+	private static final List<Entry<Item, Integer>> NETHER_MINERALS = List.of(
+			Map.entry(Items.QUARTZ, ConfigHandler.netherQuartz),          // ~60% chance
+			Map.entry(Items.GOLD_INGOT, ConfigHandler.netherGoldIngot),     // ~35% chance
+			Map.entry(Items.NETHERITE_SCRAP, ConfigHandler.netherNetherite)   // ~5% chance
 	);
 
 	// Calculate total weights once on class load
@@ -57,9 +55,5 @@ public class Util {
 		}
 
 		return weightedList.get(0).getKey(); // Fallback
-	}
-
-	private static <K, V> Entry<K, V> entry(K key, V value) {
-		return new AbstractMap.SimpleImmutableEntry<>(key, value);
 	}
 }
